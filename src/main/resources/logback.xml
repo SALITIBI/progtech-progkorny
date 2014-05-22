@@ -1,0 +1,36 @@
+<!--
+	Ha a scan attribútum értékét "true"-ra módosítjuk, akkor a Logback
+	percenként ellenőrzi, hogy változott-e a konfigurációs állomány.
+	Változás esetén megfelelően igazítja hozzá a beállításokat. Az állomány
+	így akár futásidőben is módosítható.
+-->
+<configuration scan="false">
+
+	<!-- A konzolon minden eseményt naplózunk -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %boldBlue(%.-1level) %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!--
+		A gyökér logger mindent naplóz (a konzolra és az állományokba
+		is)
+	-->
+	<root level="OFF">
+		<appender-ref ref="STDOUT"/>
+	</root>
+
+	<!--
+		Az alábbi logger mindent a konzolra naplóz.
+
+		Az additivity="false" azt jelenti, hogy a logger-be
+		naplózott események nem adódnak tovább a hierarchiában
+		fölötte lévő logger objektumokhoz. Az attribútum értékét
+		"true"-ra kell módosítani ahhoz, hogy az események
+		eljussanak a gyökér logger-hez, így az állományokban is
+		megjelenjenek.
+	-->
+	<logger name="pkg.Main" level="ALL" additivity="false"/>
+
+</configuration>
