@@ -158,6 +158,7 @@ public class Controller {
 
 	/**
 	 * Rates the specified movie with the specified user rating.
+	 * See {@link model.Movie#rate(double)} for details.
 	 * @param movie the movie to rate
 	 * @param userRating the user's rating
 	 * @throws RatingOutOfBound if the {@code userRating} isn't between 1.0 and 5.0
@@ -253,8 +254,8 @@ public class Controller {
 		}
 	}
 	/**
-	 * Loads all the user's favorites into the favorites list.
-	 * It also causes the list used by the view to be reloaded.
+	 * Loads all the user's favorites into the favorite list.
+	 * Reloads the favorites list used by the view.
 	 */
 	public void loadAllFavorites()
 	{

@@ -39,7 +39,7 @@ public class Movie {
 	private List<Actor> actors;
 
 	/**
-	 * Constructs a new {@code Movie} object with the specified parameters.
+	 * Constructs a new {@code Movie} object with the specified attributes.
 	 * 
 	 * @param id the identifier of the movie
 	 * @param title the title of the movie
@@ -60,7 +60,7 @@ public class Movie {
 
 	/**
 	 * Rates the movie. This method takes a new rating value as a parameter and
-	 * calculates the new average rating for the {@code Movie} object.
+	 * calculates the new average rating for this {@code Movie} object, and increments its rating count.
 	 * 
 	 * @param userRating the new rating
 	 * @throws RatingOutOfBound if the specified rating's value isn't between 1.0 and 5.0
