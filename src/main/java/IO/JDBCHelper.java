@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Class for maintaining a JDBC database connection. It connects to the remote
- * database when required, and prepares the necessary {@link PreparedStatement}
+ * database when required, and prepares the necessary {@code PreparedStatement}
  * s. It also creates a "shutdown hook" to close all these statements and the
  * connection.
  */
@@ -28,29 +28,29 @@ public class JDBCHelper {
 	private static Connection connection;
 
 	/**
-	 * {@link PreparedStatement} for selecting actors and actresses by their
+	 * {@code PreparedStatement} for selecting actors and actresses by their
 	 * name.
 	 */
 	private static PreparedStatement selectActorsByName;
 	/**
-	 * {@link PreparedStatement} for selecting actors and actresses by the movie
+	 * {@code PreparedStatement} for selecting actors and actresses by the movie
 	 * which featured them.
 	 */
 	private static PreparedStatement selectActorsByMovie;
 	/**
-	 * {@link PreparedStatement} for selecting movies by their title.
+	 * {@code PreparedStatement} for selecting movies by their title.
 	 */
 	private static PreparedStatement selectMoviesByTitle;
 	/**
-	 * {@link PreparedStatement} for selecting movies by their cast member.
+	 * {@code PreparedStatement} for selecting movies by their cast member.
 	 */
 	private static PreparedStatement selectMoviesByActor;
 	/**
-	 * {@link PreparedStatement} for selecting movies by their identifier.
+	 * {@code PreparedStatement} for selecting movies by their identifier.
 	 */
 	private static PreparedStatement selectMoviesById;
 	/**
-	 * {@link PreparedStatement} for updating movies' ratings.
+	 * {@code PreparedStatement} for updating movies' ratings.
 	 */
 	private static PreparedStatement updateMovieRating;
 	/**
@@ -141,7 +141,7 @@ public class JDBCHelper {
 	}
 
 	/**
-	 * Returns a {@link PreparedStatement} for selecting actors by their name
+	 * Returns a {@code PreparedStatement} for selecting actors by their name
 	 * and creating it, if called for the first-time during runtime.
 	 * @return the statement for querying the database
 	 * @throws SQLException if an error occurs while reading from the database
@@ -158,7 +158,7 @@ public class JDBCHelper {
 	}
 
 	/**
-	 * Returns a {@link PreparedStatement} for selecting actors by the movie which featured them
+	 * Returns a {@code PreparedStatement} for selecting actors by the movie which featured them
 	 * and creating it, if called for the first-time during runtime.
 	 * @return the statement for querying the database
 	 * @throws SQLException if an error occurs while reading from the database
@@ -173,7 +173,7 @@ public class JDBCHelper {
 		return selectActorsByMovie;
 	}
 	/**
-	 * Returns a {@link PreparedStatement} for selecting movies by their title
+	 * Returns a {@code PreparedStatement} for selecting movies by their title
 	 * and creating it, if called for the first-time during runtime.
 	 * @return the statement for querying the database
 	 * @throws SQLException if an error occurs while reading from the database
@@ -190,7 +190,7 @@ public class JDBCHelper {
 	}
 
 	/**
-	 * Returns a {@link PreparedStatement} for selecting movies by their cast member
+	 * Returns a {@code PreparedStatement} for selecting movies by their cast member
 	 * and creating it, if called for the first-time during runtime.
 	 * @return the statement for querying the database
 	 * @throws SQLException if an error occurs while reading from the database
@@ -207,7 +207,7 @@ public class JDBCHelper {
 	}
 
 	/**
-	 * Returns a {@link PreparedStatement} required for updating a movie's rating
+	 * Returns a {@code PreparedStatement} required for updating a movie's rating
 	 * and creating it, if called for the first-time during runtime.
 	 * @return the statement for updating the database
 	 * @throws SQLException if an error occurs while writing to the database
@@ -224,7 +224,7 @@ public class JDBCHelper {
 	}
 
 	/**
-	 * Returns a {@link PreparedStatement} required for finding a movie in the database by its id
+	 * Returns a {@code PreparedStatement} required for finding a movie in the database by its id
 	 * and creating it, if called for the first-time during runtime.
 	 * @return the statement for querying the database
 	 * @throws SQLException if an error occurs while writing to the database
