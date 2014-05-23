@@ -1,24 +1,24 @@
 package BusinessLogicTest;
 import static org.junit.Assert.*;
+import io.FavoritesStorage;
+import io.MovieStorage;
 
 import java.util.List;
 
 import model.Actor;
-import model.DataHandler;
 import model.Movie;
 
 import org.codehaus.groovy.runtime.metaclass.MethodMetaProperty.GetMethodMetaProperty;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import IO.FavoritesStorage;
-import IO.MovieStorage;
+import controller.Controller;
 import IOMock.FavoriteStorageMocker;
 import IOMock.MovieStorageMocker;
 
 
 public class ActorFilterListByMovieTest {
-	private static DataHandler state;
+	private static Controller state;
 	private static FavoritesStorage favStorage;
 	private static MovieStorage movieStorage;
 	
@@ -26,7 +26,7 @@ public class ActorFilterListByMovieTest {
 	public static void setUpBeforeClass() throws Exception {
 		movieStorage=new MovieStorageMocker();
 		favStorage=new FavoriteStorageMocker();
-		state=new DataHandler(movieStorage, favStorage);
+		state=new Controller(movieStorage, favStorage);
 	}
 
 	@Test

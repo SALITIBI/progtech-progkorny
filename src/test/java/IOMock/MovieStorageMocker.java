@@ -1,4 +1,7 @@
 package IOMock;
+import io.InOutException;
+import io.MovieStorage;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -7,8 +10,6 @@ import java.util.Map;
 
 import model.Actor;
 import model.Movie;
-import IO.InOutException;
-import IO.MovieStorage;
 
 
 public class MovieStorageMocker implements MovieStorage{

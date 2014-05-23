@@ -1,4 +1,4 @@
-package IO;
+package io;
 
 public class InOutException extends RuntimeException {
 	public InOutException() {

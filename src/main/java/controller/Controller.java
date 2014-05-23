@@ -1,16 +1,22 @@
-package model;
+package controller;
+
+import io.FavoritesStorage;
+import io.InOutException;
+import io.MovieStorage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import model.Actor;
+import model.AlreadyFavorite;
+import model.AlreadyRated;
+import model.Movie;
+import model.RatingOutOfBound;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import IO.FavoritesStorage;
-import IO.InOutException;
-import IO.MovieStorage;
 
 /**
  * This class contains the software's current state, and has methods for
@@ -22,11 +28,11 @@ import IO.MovieStorage;
  * 
  * @author Tibor Salagvárdi
  */
-public class DataHandler {
+public class Controller {
 	/**
 	 * A logger for logging.
 	 */
-	private static Logger logger = LoggerFactory.getLogger(DataHandler.class);
+	private static Logger logger = LoggerFactory.getLogger(Controller.class);
 	/**
 	 * An input/output source, used for storing the user's favorite movies.
 	 */
@@ -71,7 +77,7 @@ public class DataHandler {
 	 * @param movieSource Represents the public movie database
 	 * @param favStorage Represents the storage for the user's favorites
 	 */
-	public DataHandler(MovieStorage movieSource, FavoritesStorage favStorage) {
+	public Controller(MovieStorage movieSource, FavoritesStorage favStorage) {
 		this.movieSource=movieSource;
 		this.favStorage=favStorage;
 		movies = new ArrayList<Movie>();

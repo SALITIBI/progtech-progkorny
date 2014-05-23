@@ -65,7 +65,7 @@ public class Movie {
 	 * @param userRating the new rating
 	 * @throws RatingOutOfBound if the specified rating's value isn't between 1.0 and 5.0
 	 */
-	void rate(double userRating) throws RatingOutOfBound {
+	public void rate(double userRating) throws RatingOutOfBound {
 		if (userRating > 5) {
 			throw new RatingOutOfBound("Your rating cannot be higher than 5!");
 		}

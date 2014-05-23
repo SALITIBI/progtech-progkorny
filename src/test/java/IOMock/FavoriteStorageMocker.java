@@ -1,12 +1,13 @@
 package IOMock;
+import io.InOutException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Movie;
-import IO.InOutException;
 
 
-public class FavoriteStorageMocker implements IO.FavoritesStorage {
+public class FavoriteStorageMocker implements io.FavoritesStorage {
 	List<Integer> favIds=new ArrayList<Integer>();
 	public FavoriteStorageMocker(){
 		favIds.add(1);

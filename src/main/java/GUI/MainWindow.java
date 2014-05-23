@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -19,10 +19,10 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionListener;
 
-import model.DataHandler;
+import controller.Controller;
 
 public class MainWindow extends JFrame {
-	private DataHandler state;
+	private Controller state;
 
 	private JButton 		searchInPublicDB	=new JButton("Search for:");
 	private JTextField		nameInPublicDB		=new JTextField();
@@ -47,7 +47,7 @@ public class MainWindow extends JFrame {
 	public static final int LOOKING_FOR_ACTOR = 0;
 	public static final int LOOKING_FOR_MOVIE = 1;
 
-	public MainWindow(DataHandler state, String title) {
+	public MainWindow(Controller state, String title) {
 		super(title);
 		this.state = state;
 

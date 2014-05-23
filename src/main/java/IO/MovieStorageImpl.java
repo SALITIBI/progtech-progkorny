@@ -1,4 +1,4 @@
-package IO;
+package io;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

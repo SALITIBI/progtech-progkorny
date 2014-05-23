@@ -1,13 +1,14 @@
 package BusinessLogicTest;
 
 import static org.junit.Assert.*;
+import io.FavoritesStorage;
+import io.MovieStorage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import model.DataHandler;
 import model.Movie;
 
 import org.junit.BeforeClass;
@@ -15,15 +16,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import IO.FavoritesStorage;
-import IO.MovieStorage;
+import controller.Controller;
 import IOMock.FavoriteStorageMocker;
 import IOMock.MovieStorageMocker;
 
 @RunWith(Parameterized.class)
 public class FavoriteMovieFilterTest {
 
-	private static DataHandler state;
+	private static Controller state;
 	private static FavoritesStorage favStorage;
 	private static MovieStorage movieStorage;
 	@Parameterized.Parameters
@@ -38,7 +38,7 @@ public class FavoriteMovieFilterTest {
 	public static void setUpBeforeClass() throws Exception {
 		movieStorage=new MovieStorageMocker();
 		favStorage=new FavoriteStorageMocker();
-		state=new DataHandler(movieStorage, favStorage);
+		state=new Controller(movieStorage, favStorage);
 	}
 	@Test
 	public void test() {

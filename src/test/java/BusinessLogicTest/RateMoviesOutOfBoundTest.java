@@ -1,11 +1,13 @@
 package BusinessLogicTest;
 import static org.junit.Assert.*;
+import io.FavoritesStorage;
+import io.InOutException;
+import io.MovieStorage;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import model.AlreadyRated;
-import model.DataHandler;
 import model.Movie;
 import model.RatingOutOfBound;
 
@@ -14,9 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import IO.FavoritesStorage;
-import IO.InOutException;
-import IO.MovieStorage;
+import controller.Controller;
 import IOMock.FavoriteStorageMocker;
 import IOMock.MovieStorageMocker;
 
@@ -35,7 +35,7 @@ public class RateMoviesOutOfBoundTest {
 		this.userRating=userRating;
 	}
 	
-	private static DataHandler state;
+	private static Controller state;
 	private static FavoritesStorage favStorage;
 	private static MovieStorage movieStorage;
 	
@@ -48,7 +48,7 @@ public class RateMoviesOutOfBoundTest {
 	}
 	@Test(expected = RatingOutOfBound.class)
 	public void testRatingBounds() throws AlreadyRated, RatingOutOfBound{
-		state=new DataHandler(movieStorage, favStorage);
+		state=new Controller(movieStorage, favStorage);
 		Movie movie = new Movie(1, "Apacuka", "Fundaluka", 0,0, 2014);
 		state.rateMovie(movie, userRating);
 	}
