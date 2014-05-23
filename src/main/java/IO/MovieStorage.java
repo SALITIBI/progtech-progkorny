@@ -16,7 +16,7 @@ public interface MovieStorage {
 	 * Gets those actors from the IO source, whose name contain the specified {@code String}.
 	 * 
 	 * @param name the name of the actors to be found
-	 * @return the list of the actors found with the name containing the specified name
+	 * @return the list of the actors found with the name containing the specified {@code String}
 	 */
 	public List<Actor> findActorsByName(String name);
 
@@ -24,7 +24,7 @@ public interface MovieStorage {
 	 * Gets those movies from the IO source, whose title contain the specified {@code String}.
 	 * 
 	 * @param title the title of the movies to be found
-	 * @return the list of the movies found with the specified title
+	 * @return the list of the movies found with the title containing the specified {@code String}
 	 */
 	public List<Movie> findMoviesByTitle(String title);
 
@@ -53,7 +53,7 @@ public interface MovieStorage {
 	/**
 	 * Finds that movie in the IO source which has the specified identifier.
 	 * @param id the identifier of the movie
-	 * @return a movie which has the same id as the specified one
+	 * @return a movie which has the same {@code id} as the specified one
 	 */
 	public Movie GetMovieById(int id);
 

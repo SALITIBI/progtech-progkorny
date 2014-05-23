@@ -99,7 +99,7 @@ public class JDBCHelper {
 	 * resources.
 	 */
 	static {
-		logger.info("Creating shutdown hook for closing resources.");
+		logger.debug("Creating shutdown hook for closing resources.");
 		Runtime.getRuntime().addShutdownHook(new Thread()
 		{
 			@Override
@@ -151,7 +151,7 @@ public class JDBCHelper {
 		connection = getConnection();
 		if (selectActorsByName == null)
 		{
-			logger.info("Preparing statement: selectActorsByName");
+			logger.debug("Preparing statement: selectActorsByName");
 			selectActorsByName = connection.prepareStatement(SELECT_ACTORS_BY_NAME);
 		}
 		return selectActorsByName;
@@ -167,7 +167,7 @@ public class JDBCHelper {
 		connection = getConnection();
 		if (selectActorsByMovie == null)
 		{
-			logger.info("Preparing statement: selectActorsByMovie");
+			logger.debug("Preparing statement: selectActorsByMovie");
 			selectActorsByMovie = connection.prepareStatement(SELECT_ACTORS_BY_MOVIE);
 		}
 		return selectActorsByMovie;
@@ -183,7 +183,7 @@ public class JDBCHelper {
 		connection = getConnection();
 		if (selectMoviesByTitle == null)
 		{
-			logger.info("Preparing statement: selectMoviesByTitle");
+			logger.debug("Preparing statement: selectMoviesByTitle");
 			selectMoviesByTitle = connection.prepareStatement(SELECT_MOVIES_BY_TITLE);
 		}
 		return selectMoviesByTitle;
@@ -200,7 +200,7 @@ public class JDBCHelper {
 		connection = getConnection();
 		if (selectMoviesByActor == null)
 		{
-			logger.info("Preparing statement: selectMoviesByActor");
+			logger.debug("Preparing statement: selectMoviesByActor");
 			selectMoviesByActor = connection.prepareStatement(SELECT_MOVIES_BY_ACTOR);
 		}
 		return selectMoviesByActor;
@@ -217,7 +217,7 @@ public class JDBCHelper {
 		connection = getConnection();
 		if (updateMovieRating == null)
 		{
-			logger.info("Preparing statement: updateMovieRating");
+			logger.debug("Preparing statement: updateMovieRating");
 			updateMovieRating = connection.prepareStatement(UPDATE_MOVIE_RATING);
 		}
 		return updateMovieRating;
@@ -234,7 +234,7 @@ public class JDBCHelper {
 		connection = getConnection();
 		if (selectMoviesById == null)
 		{
-			logger.info("Preparing statement: selectMoviesById");
+			logger.debug("Preparing statement: selectMoviesById");
 			selectMoviesById = connection.prepareStatement(SELECT_MOVIES_BY_ID);
 		}
 		return selectMoviesById;
@@ -248,33 +248,33 @@ public class JDBCHelper {
 	{
 		if (selectActorsByName != null)
 		{
-			logger.info("Closing preparedStatement: selectActorsByName");
+			logger.debug("Closing preparedStatement: selectActorsByName");
 			selectActorsByName.close();
 		}
 		if (selectActorsByMovie != null)
 		{
 			selectActorsByMovie.close();
-			logger.info("Closing preparedStatement: selectActorsByMovie");
+			logger.debug("Closing preparedStatement: selectActorsByMovie");
 		}
 		if (selectMoviesByTitle != null)
 		{
 			selectMoviesByTitle.close();
-			logger.info("Closing preparedStatement: selectMoviesByTitle");
+			logger.debug("Closing preparedStatement: selectMoviesByTitle");
 		}
 		if (selectMoviesByActor != null)
 		{
 			selectMoviesByActor.close();
-			logger.info("Closing preparedStatement: selectMoviesByActor");
+			logger.debug("Closing preparedStatement: selectMoviesByActor");
 		}
 		if (updateMovieRating != null)
 		{
 			updateMovieRating.close();
-			logger.info("Closing preparedStatement: updateMovieRating");
+			logger.debug("Closing preparedStatement: updateMovieRating");
 		}
 		if (connection != null)
 		{
+			logger.info("Closing database connection.");
 			connection.close();
-			logger.info("Database connection closed.");
 		}
 	}
 

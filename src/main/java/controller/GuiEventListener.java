@@ -61,6 +61,7 @@ public class GuiEventListener
 	{
 		public void actionPerformed(ActionEvent arg0)
 		{
+			logger.debug("Trying to search in database...");
 			if (view.getDataToSearchFor() == MainWindow.LOOKING_FOR_ACTOR)
 			{
 				try {
@@ -88,6 +89,7 @@ public class GuiEventListener
 	{
 		public void actionPerformed(ActionEvent arg0)
 		{
+			logger.debug("Seaching in favorites...");
 			programModel.filterFavorites(view.getNameInFavorites());
 			view.updateFavMovieTable();
 		}
@@ -118,6 +120,7 @@ public class GuiEventListener
 				try {
 					if (movieTable.getSelectedRow() > -1)
 					{
+						logger.debug("Selected {}. row in {}.",movieTable.getSelectedRow(),movieTable);
 						MovieViewHelper mvh = (MovieViewHelper) movieTable.getModel();
 						int index = movieTable.convertRowIndexToModel(movieTable.getSelectedRow());
 						programModel.loadActorsByMovie(mvh.getValueAt(index));
@@ -152,6 +155,7 @@ public class GuiEventListener
 				try {
 					if (view.getActorTable().getSelectedRow() > -1)
 					{
+						logger.debug("Selected {}. row in {}.",actorTable.getSelectedRow(),actorTable);
 						ActorViewHelper avh = (ActorViewHelper) actorTable.getModel();
 						int index = actorTable.convertRowIndexToModel(actorTable.getSelectedRow());
 						programModel.loadMoviesByActor(avh.getValueAt(index));
@@ -180,6 +184,7 @@ public class GuiEventListener
 
 		public void actionPerformed(ActionEvent arg0)
 		{
+			logger.debug("Trying to rate movie...");
 			if (movTable.getSelectedRowCount() == 1)
 			{
 				int state = view.rateDialog();
@@ -224,6 +229,7 @@ public class GuiEventListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
+			logger.debug("Trying to remove from favorites...");
 			JTable favTable=view.getFavMovieTable();
 			if (favTable.getSelectedRowCount() == 1)
 			{
@@ -249,6 +255,7 @@ public class GuiEventListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
+			logger.debug("Trying to save movie as favorite...");
 			if (view.getMovieTable().getSelectedRowCount() == 1)
 			{
 				try {

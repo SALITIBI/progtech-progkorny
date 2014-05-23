@@ -243,7 +243,7 @@ public class Controller {
 	 */
 	public void filterFavorites(String title){
 		this.previousTitle=title;
-		logger.info("Searching in favorites list.");
+		logger.info("Filtering favorites list by: {}",title);
 		filteredFavorites.clear();
 		for (Movie movie : allFavorites) {
 			if(movie.getTitle().contains(title))
@@ -270,7 +270,6 @@ public class Controller {
 					allFavorites.add(movieSource.GetMovieById(i));
 				}
 			}
-			// favorites=movieSource.loadAllFavorites();
 			for (Movie mov : allFavorites) {
 				mov.setActors(movieSource.findActorsByMovie(mov));
 			}

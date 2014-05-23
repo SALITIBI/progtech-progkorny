@@ -8,7 +8,6 @@ import java.util.List;
 import model.Actor;
 import model.Movie;
 
-import org.codehaus.groovy.runtime.metaclass.MethodMetaProperty.GetMethodMetaProperty;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

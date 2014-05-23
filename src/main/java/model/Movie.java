@@ -39,7 +39,7 @@ public class Movie {
 	private List<Actor> actors;
 
 	/**
-	 * Constructs a new Movie object with the specified parameters.
+	 * Constructs a new {@code Movie} object with the specified parameters.
 	 * 
 	 * @param id the identifier of the movie
 	 * @param title the title of the movie
