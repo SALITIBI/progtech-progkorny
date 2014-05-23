@@ -42,6 +42,10 @@ public class DataHandler {
 	 */
 	private List<Movie> movies;
 	/**
+	 * Contains the last title filter for the favorites.
+	 */
+	private String previousTitle="";
+	/**
 	 * A list of the favorite movies, which is used by the view.
 	 */
 	private List<Movie> filteredFavorites;
@@ -77,7 +81,7 @@ public class DataHandler {
 		filteredFavorites = new ArrayList<>();
 	}
 	/**
-	 * Loads those movies, whose title contain the specified String.
+	 * Loads those movies, whose title contain the specified {@code String}.
 	 * Reloads the movie list which is used by the view.
 	 * @param title the title of the movies to be loaded
 	 * @throws InOutException if an error occurs during reading from the IO source
@@ -115,7 +119,7 @@ public class DataHandler {
 	}
 
 	/**
-	 * Loads those actors, whose name contains the specified String.
+	 * Loads those actors, whose name contains the specified {@code String}.
 	 * Reloads the actor list which is used by the view.
 	 * @param name 
 	 * @throws InOutException if an error occurs during reading from the IO source
@@ -174,18 +178,18 @@ public class DataHandler {
 	 * Saves the specified movie as favorite.
 	 * @param movie the movie to be saved as favorite
 	 * @throws InOutException if an error occurs during writing to the IO source
-	 * @throws AlreadyFavourite if the specified movie is already in the user's favorite list
+	 * @throws AlreadyFavorite if the specified movie is already in the user's favorite list
 	 */
-	public void addMovieToFavorites(Movie movie) throws InOutException, AlreadyFavourite
+	public void addMovieToFavorites(Movie movie) throws InOutException, AlreadyFavorite
 	{
 		logger.info("Saving {} as favorite.",movie.getTitle());
 		if (allFavorites.contains(movie)) {
-			throw new AlreadyFavourite("The selected movie is already in your favorites list.");
+			throw new AlreadyFavorite("The selected movie is already in your favorites list.");
 		} else {
 			allFavorites.add(movie);
 		}
 		favStorage.saveToFavorites(movie);
-		filterFavorites("");
+		filterFavorites(previousTitle);
 	}
 
 	/**
@@ -198,7 +202,7 @@ public class DataHandler {
 		logger.info("Removing {} from favorites.",movie.getTitle());
 		allFavorites.remove(movie);
 		favStorage.removeFromFavorites(movie);
-		filterFavorites("");
+		filterFavorites(previousTitle);
 	}
 
 	/**
@@ -229,9 +233,10 @@ public class DataHandler {
 	/**
 	 * Filters the user's favorite list by the movies' titles.
 	 * Reloads the favorites list used by the view.
-	 * @param title the {@String} to search for in the movies' titles.
+	 * @param title the {@code String} to search for in the movies' titles.
 	 */
 	public void filterFavorites(String title){
+		this.previousTitle=title;
 		logger.info("Searching in favorites list.");
 		filteredFavorites.clear();
 		for (Movie movie : allFavorites) {

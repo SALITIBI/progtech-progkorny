@@ -27,7 +27,7 @@ import org.xml.sax.SAXException;
 
 import model.Movie;
 /**
- * Class for handling a favorite storage. This implementation uses XML thechnology.
+ * Class for handling a favorite storage. This implementation uses DOM.
  * @author Tibor Salagvárdi
  */
 public class FavoritesStorageImpl implements FavoritesStorage
