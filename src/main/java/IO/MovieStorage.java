@@ -13,7 +13,7 @@ import model.Movie;
  */
 public interface MovieStorage {
 	/**
-	 * Gets those actors from the IO source, whose name contain the specified String.
+	 * Gets those actors from the IO source, whose name contain the specified {@code String}.
 	 * 
 	 * @param name the name of the actors to be found
 	 * @return the list of the actors found with the name containing the specified name
@@ -21,7 +21,7 @@ public interface MovieStorage {
 	public List<Actor> findActorsByName(String name);
 
 	/**
-	 * Gets those movies from the IO source, whose title contain the specified String.
+	 * Gets those movies from the IO source, whose title contain the specified {@code String}.
 	 * 
 	 * @param title the title of the movies to be found
 	 * @return the list of the movies found with the specified title

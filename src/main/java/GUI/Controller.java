@@ -12,8 +12,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import IO.InOutException;
-import model.AlreadyFavourite;
+import model.AlreadyFavorite;
 import model.AlreadyRated;
 import model.DataHandler;
 import model.Movie;
@@ -30,12 +33,13 @@ public class Controller
 	private MainWindow view;
 	private DataHandler programModel;
 
+	private static Logger logger = LoggerFactory.getLogger(Controller.class);
 	public Controller(MainWindow view, DataHandler state)
 	{
 		this.view = view;
 		this.programModel = state;
 		
-		view.addSearchListenerForFavourites(new SearchInFavoritesListener());
+		view.addSearchListenerForFavorites(new SearchInFavoritesListener());
 		view.addSearchListenerForPublicDB(new SearchInDBListener());
 		view.addShowAllFavoritesListener(new ShowAllFavorites());
 		view.addMovieSelectionListener(new MovieSelectListener(view.getMovieTable(), view.getActorTable()));
@@ -59,8 +63,8 @@ public class Controller
 				try {
 					programModel.loadActorsByName(view.getNameInPublicDB());
 				} catch (InOutException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e.getMessage());
+					view.showError(e.getMessage());
 				}
 				view.updateActorTable();
 				view.updateFavActorTable();
@@ -70,8 +74,8 @@ public class Controller
 				try {
 					programModel.loadMoviesByTitle(view.getNameInPublicDB());
 				} catch (InOutException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e.getMessage());
+					view.showError(e.getMessage());
 				}
 				view.updateMovieTable();
 			}
@@ -81,7 +85,7 @@ public class Controller
 	{
 		public void actionPerformed(ActionEvent arg0)
 		{
-			programModel.filterFavorites(view.getNameInFavourites());
+			programModel.filterFavorites(view.getNameInFavorites());
 			view.updateFavMovieTable();
 		}
 	}
@@ -118,8 +122,8 @@ public class Controller
 						ATM.fireTableDataChanged();
 					}
 				} catch (InOutException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					logger.error(e1.getMessage());
+					view.showError(e1.getMessage());
 				}
 			}
 
@@ -152,6 +156,7 @@ public class Controller
 						ATM.fireTableDataChanged();
 					}
 				} catch (InOutException e1) {
+					logger.error(e1.getMessage());
 					view.showError(e1.getMessage());
 				}
 			}
@@ -182,6 +187,7 @@ public class Controller
 						userRating = Double.parseDouble(view.getRating());
 					}catch (NumberFormatException e){
 						view.showError("Invalid input!");
+						logger.error(e.getMessage());
 					}
 					try{
 						MovieViewHelper MVH = (MovieViewHelper)movTable.getModel();
@@ -189,12 +195,15 @@ public class Controller
 						programModel.rateMovie(mov,userRating);
 					}
 					catch (RatingOutOfBound e){
+						logger.error(e.getMessage());
 						view.showError(e.getMessage());
 					}
 					catch (InOutException e){
+						logger.error(e.getMessage());
 						view.showError(e.getMessage());
 					}catch (AlreadyRated e)
 					{
+						logger.error(e.getMessage());
 						view.showError(e.getMessage());
 					}
 					view.updateMovieTable();
@@ -220,6 +229,8 @@ public class Controller
 					programModel.removeFromFavorites(MVH.getValueAt(favTable.convertRowIndexToModel(favTable.getSelectedRow())));
 				} catch (InOutException e1) {
 					view.showError("Error while trying to remove the selected movie from your favorites.");
+					logger.error(e1.getMessage());
+					
 				}
 				view.updateFavMovieTable();
 			}
@@ -241,8 +252,10 @@ public class Controller
 					MovieViewHelper MVH = (MovieViewHelper)view.getMovieTable().getModel();
 					programModel.addMovieToFavorites(MVH.getValueAt(view.getMovieTable().convertRowIndexToModel(view.getMovieTable().getSelectedRow())));
 				} catch (InOutException e1) {
+					logger.error(e1.getMessage());
 					view.showError(e1.getMessage());
-				} catch (AlreadyFavourite e1) {
+				} catch (AlreadyFavorite e1) {
+					logger.error(e1.getMessage());
 					view.showError(e1.getMessage());
 				}
 				view.updateFavMovieTable();

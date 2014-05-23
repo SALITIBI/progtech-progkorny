@@ -8,17 +8,19 @@
       The software itself consists of the following functions: finding movies and actors by their name, listing the cast of a movie and listing all movies which
       featured a specific actor or actress. The user can rate the movies on a 1 to 5 scale, and has a favorite-movie list, 
       which they can manipulate (adding movies to it and removing from it).</description>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <developers>
   	<developer>
   		<id>salagvardit</id>
-  		<name>Salagvárdi Tibor</name>
+  		<name>Tibor Salagvárdi</name>
   		<email>salagvardit@msn.com</email>
   		<url/>
   		<organization>Faculty of Informatics, University of Debrecen</organization>
   		<organizationUrl>http://www.inf.unideb.hu/</organizationUrl>
   		<roles>
   			<role>developer</role>
-  			<role>project leader</role>
   		</roles>
   	</developer>
   </developers>
@@ -130,6 +132,12 @@
 		</plugin>
   	</plugins>
   </reporting>
+  <distributionManagement>
+  <site>
+  	<id>shrek</id>
+  	<url>scp://salagvardit@shrek.unideb.hu/home/salagvardit/public_html/${project.artifactId}</url>
+  </site>
+  </distributionManagement>
   <repositories>
   	<repository>
   		<id>local</id>

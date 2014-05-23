@@ -28,8 +28,8 @@ public class MainWindow extends JFrame {
 	private JTextField		nameInPublicDB		=new JTextField();
 	
 	private JButton			showAllFavorites	=new JButton("Show all");
-	private JButton			searchInFavourites  =new JButton("Filter");
-	private JTextField		nameInFavourites	=new JTextField();
+	private JButton			searchInFavorites  =new JButton("Filter");
+	private JTextField		nameInFavorites	=new JTextField();
 	
 	private JTextField		rating				=new JTextField();
 
@@ -40,7 +40,7 @@ public class MainWindow extends JFrame {
 	private JPanel 			ratePanel;
 
 	private MovieTab 		resultsTab;
-	private MovieTab 		favouriteTab;
+	private MovieTab 		favoriteTab;
 
 	private JTabbedPane 	tabbedPane;
 
@@ -70,10 +70,10 @@ public class MainWindow extends JFrame {
 		group.add(selectMovie);
 
 		resultsTab = new MovieTab(state.getActors(), state.getMovies(), "Save");
-		favouriteTab = new MovieTab(state.getActors(), state.getFavorites(),
+		favoriteTab = new MovieTab(state.getActors(), state.getFavorites(),
 				"Remove");
 		resultsTab.setFocusable(false);
-		favouriteTab.setFocusable(false);
+		favoriteTab.setFocusable(false);
 
 		dBSearchBar.add(searchInPublicDB);
 		dBSearchBar.add(selectMovie);
@@ -87,13 +87,13 @@ public class MainWindow extends JFrame {
 		
 		favSearchBar.add(showAllFavorites);
 		favSearchBar.add(new JLabel(" "));
-		favSearchBar.add(searchInFavourites);
+		favSearchBar.add(searchInFavorites);
 		JLabel moviesbytitle = new JLabel("movies by title:");
 		moviesbytitle.setHorizontalAlignment(SwingConstants.CENTER);
 		favSearchBar.add(moviesbytitle);
-		favSearchBar.add(nameInFavourites);
+		favSearchBar.add(nameInFavorites);
 		favSearchPane.add(favSearchBar);
-		favSearchPane.add(favouriteTab);
+		favSearchPane.add(favoriteTab);
 		
 		tabbedPane.addTab("Show favorites", favSearchPane);
 		
@@ -123,11 +123,11 @@ public class MainWindow extends JFrame {
 	}
 
 	public void updateFavActorTable() {
-		favouriteTab.updateActorTable();
+		favoriteTab.updateActorTable();
 	}
 
 	public void updateFavMovieTable() {
-		favouriteTab.updateMovieTable();
+		favoriteTab.updateMovieTable();
 	}
 	public void addShowAllFavoritesListener(ActionListener al){
 		showAllFavorites.addActionListener(al);
@@ -135,8 +135,8 @@ public class MainWindow extends JFrame {
 	public void addSearchListenerForPublicDB(ActionListener al) {
 		searchInPublicDB.addActionListener(al);
 	}
-	public void addSearchListenerForFavourites(ActionListener al) {
-		searchInFavourites.addActionListener(al);
+	public void addSearchListenerForFavorites(ActionListener al) {
+		searchInFavorites.addActionListener(al);
 	}
 
 	public void addMovieSelectionListener(ListSelectionListener lsl) {
@@ -148,7 +148,7 @@ public class MainWindow extends JFrame {
 	}
 
 	public void addFavMovieSelectionListener(ListSelectionListener lsl) {
-		favouriteTab.addSelectMovieListener(lsl);
+		favoriteTab.addSelectMovieListener(lsl);
 	}
 
 	public void addMovieRateListener(ActionListener al) {
@@ -156,7 +156,7 @@ public class MainWindow extends JFrame {
 	}
 
 	public void addFavMovieRateListener(ActionListener al) {
-		favouriteTab.addRateListener(al);
+		favoriteTab.addRateListener(al);
 	}
 
 	public void addSaveListener(ActionListener al) {
@@ -164,7 +164,7 @@ public class MainWindow extends JFrame {
 	}
 
 	public void addRemoveListener(ActionListener al) {
-		favouriteTab.addRemoveOrSaveListener(al);
+		favoriteTab.addRemoveOrSaveListener(al);
 	}
 
 	public void addTabListener(ChangeListener l) {
@@ -189,15 +189,15 @@ public class MainWindow extends JFrame {
 		return resultsTab;
 	}
 
-	public MovieTab getFavouriteTab() {
-		return favouriteTab;
+	public MovieTab getFavoriteTab() {
+		return favoriteTab;
 	}
 
 	public String getNameInPublicDB() {
 		return nameInPublicDB.getText();
 	}
-	public String getNameInFavourites(){
-		return nameInFavourites.getText();
+	public String getNameInFavorites(){
+		return nameInFavorites.getText();
 	}
 	public int getDataToSearchFor() {
 		if (selectActor.isSelected()) {
@@ -216,11 +216,11 @@ public class MainWindow extends JFrame {
 	}
 
 	public JTable getFavMovieTable() {
-		return favouriteTab.getMovieTable();
+		return favoriteTab.getMovieTable();
 	}
 
 	public JTable getFavActorTable() {
-		return favouriteTab.getActorTable();
+		return favoriteTab.getActorTable();
 	}
 
 }
