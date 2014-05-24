@@ -1,5 +1,6 @@
 package io;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -46,12 +47,13 @@ public class FavoritesStorageImpl implements FavoritesStorage
 	 */
 	public FavoritesStorageImpl()
 	{
-		try(InputStream in = new FileInputStream("favorites.xml")) {
+		try(InputStream in = new FileInputStream(System.getProperty("user.home")+"/.dmdb_profile/favorites.xml")) {
 			
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			doc = db.parse(in);
 		} catch (FileNotFoundException e) {
+			new File(System.getProperty("user.home"),".dmdb_profile").mkdir();
 			logger.error(e.getMessage());
 			createNewFavStorage();
 		} catch (ParserConfigurationException e) {
@@ -131,7 +133,7 @@ public class FavoritesStorageImpl implements FavoritesStorage
 	 * Writes the DOM tree to the XML document.
 	 */
 	private void writeDOMTreeToFile() {
-		try(FileOutputStream out = new FileOutputStream("favorites.xml")) {
+		try(FileOutputStream out = new FileOutputStream(new File(System.getProperty("user.home")+"/.dmdb_profile/favorites.xml"))) {
 			TransformerFactory tff = TransformerFactory.newInstance();
 			Transformer tf = tff.newTransformer();
 			tf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
@@ -139,9 +141,11 @@ public class FavoritesStorageImpl implements FavoritesStorage
 			tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 			tf.transform(new DOMSource(doc), new StreamResult(out));
 		} catch (FileNotFoundException e){
-			//TODO
+			logger.error(e.getMessage());
 		} catch (TransformerException e){
-		} catch (IOException e1) {
+			logger.error(e.getMessage());
+		} catch (IOException e) {
+			logger.error(e.getMessage());
 		}
 	}
 }
