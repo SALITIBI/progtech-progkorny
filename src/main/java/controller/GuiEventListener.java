@@ -120,7 +120,7 @@ public class GuiEventListener
 				try {
 					if (movieTable.getSelectedRow() > -1)
 					{
-						logger.debug("Selected {}. row in {}.",movieTable.getSelectedRow(),movieTable);
+						logger.debug("Selected {}. row from the movie list.",movieTable.getSelectedRow()+1);
 						MovieViewHelper mvh = (MovieViewHelper) movieTable.getModel();
 						int index = movieTable.convertRowIndexToModel(movieTable.getSelectedRow());
 						programModel.loadActorsByMovie(mvh.getValueAt(index));
@@ -155,7 +155,7 @@ public class GuiEventListener
 				try {
 					if (view.getActorTable().getSelectedRow() > -1)
 					{
-						logger.debug("Selected {}. row in {}.",actorTable.getSelectedRow(),actorTable);
+						logger.debug("Selected {}. row from the actor list.",actorTable.getSelectedRow()+1);
 						ActorViewHelper avh = (ActorViewHelper) actorTable.getModel();
 						int index = actorTable.convertRowIndexToModel(actorTable.getSelectedRow());
 						programModel.loadMoviesByActor(avh.getValueAt(index));
