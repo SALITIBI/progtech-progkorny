@@ -23,8 +23,7 @@ import org.slf4j.LoggerFactory;
  * manipulating it. Basically it has the functions of a primitive controller,
  * so the GUI and the business logic are separated from each other.
  * It also requires input/output sources to work with, such
- * as a database connection, or an XML file-handler. Data manipulation should
- * only be made through this Class.
+ * as a database connection, or an XML file-handler.
  * 
  * @author Tibor Salagvárdi
  */
@@ -72,7 +71,7 @@ public class Controller {
 	 */
 	private HashMap<Integer,Movie> consistencyEnforcer=new HashMap<Integer,Movie>();
 	/**
-	 * Constructs a DataHandler object, with the specified input/output sources.
+	 * Constructs a Controller object, with the specified input/output sources.
 	 * 
 	 * @param movieSource Represents the public movie database
 	 * @param favStorage Represents the storage for the user's favorites
@@ -88,7 +87,7 @@ public class Controller {
 	}
 	/**
 	 * Loads those movies, whose title contain the specified {@code String}.
-	 * Reloads the movie list which is used by the view.
+	 * Causes to reload the movie list, which can be accessed through {@link Controller#getMovies()}.
 	 * @param title the title of the movies to be loaded
 	 * @throws InOutException if an error occurs during reading from the IO source
 	 */
@@ -107,7 +106,7 @@ public class Controller {
 
 	/**
 	 * Loads those movies, which featured the specified actor.
-	 * Reloads the movie list which is used by the view.
+	 * Causes to reload the movie list, which can be accessed through {@link Controller#getMovies()}.
 	 * @param actor the cast member of the returning movies
 	 * @throws InOutException if an error occurs during reading from the IO source
 	 */
@@ -126,8 +125,8 @@ public class Controller {
 
 	/**
 	 * Loads those actors, whose name contains the specified {@code String}.
-	 * Reloads the actor list which is used by the view.
-	 * @param name 
+	 * Causes to reload the actor list, which can be accessed through {@link Controller#getActors()}.
+	 * @param name the name of the actors to be loaded
 	 * @throws InOutException if an error occurs during reading from the IO source
 	 */
 	public void loadActorsByName(String name) throws InOutException
@@ -142,7 +141,7 @@ public class Controller {
 
 	/**
 	 * Loads those actors, who were featured by the specified movie.
-	 * Reloads the actor list which is used by the view.
+	 * Causes to reload the actor list, which can be accessed through {@link Controller#getActors()}.
 	 * @param movie the movie which featured the resulting actors
 	 * @throws InOutException if an error occurs during reading from the IO source
 	 */
@@ -214,7 +213,6 @@ public class Controller {
 
 	/**
 	 * Returns the list of movies, which is usually a search result.
-	 * It is usually used by the view, so it can list the search results.
 	 * @return the movie list
 	 */
 	public List<Movie> getMovies() {
@@ -239,7 +237,7 @@ public class Controller {
 	}
 	/**
 	 * Filters the user's favorite list by the movies' titles.
-	 * Reloads the favorites list used by the view.
+	 * Causes to reload the favorites list, which can be accessed through {@link Controller#getFavorites()}.
 	 * @param title the {@code String} to search for in the movies' titles.
 	 */
 	public void filterFavorites(String title){
@@ -255,28 +253,25 @@ public class Controller {
 	}
 	/**
 	 * Loads all the user's favorites into the favorite list.
-	 * Reloads the favorites list used by the view.
+	 * Causes to reload the favorites list, which can be accessed through {@link Controller#getFavorites()}.
 	 */
 	public void loadAllFavorites()
 	{
 		logger.info("(Re)loading favorites list.");
 		allFavorites.clear();
-		try {
-			for (Integer i : favStorage.loadAllFavorites())
-			{
-				if(consistencyEnforcer.containsKey(i)){
-					allFavorites.add(consistencyEnforcer.get(i));
-				}
-				else{
-					allFavorites.add(movieSource.GetMovieById(i));
-				}
+		
+		for (Integer i : favStorage.loadAllFavorites())
+		{
+			if(consistencyEnforcer.containsKey(i)){
+				allFavorites.add(consistencyEnforcer.get(i));
 			}
-			for (Movie mov : allFavorites) {
-				mov.setActors(movieSource.findActorsByMovie(mov));
+			else{
+				allFavorites.add(movieSource.GetMovieById(i));
 			}
-			filterFavorites("");
-		} catch (InOutException e){
-			e.printStackTrace();
 		}
+		for (Movie mov : allFavorites) {
+			mov.setActors(movieSource.findActorsByMovie(mov));
+		}
+		filterFavorites("");
 	}
 }
