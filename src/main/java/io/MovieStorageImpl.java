@@ -13,8 +13,8 @@ import model.Actor;
 import model.Movie;
 
 /**
- * Class for handling a database connection, using the OJDBC driver. It has methods for reading from the database,
- * and manipulating its content.
+ * Class for handling a database connection, provided by the {@link JDBCHelper} class.
+ * It has methods for reading from the database, and manipulating its content.
  * 
  * @author Tibor Salagvárdi
  */

@@ -29,6 +29,7 @@ import org.xml.sax.SAXException;
 import model.Movie;
 /**
  * Class for handling a favorite storage. This implementation uses DOM and stores the data in an XML document.
+ * The XML file will be stored in the user's home directory, in a subfolder named ".dmdb_profile".
  * @author Tibor Salagvárdi
  */
 public class FavoritesStorageImpl implements FavoritesStorage

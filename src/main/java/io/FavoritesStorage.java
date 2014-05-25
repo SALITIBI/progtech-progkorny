@@ -9,7 +9,7 @@ import model.Movie;
  */
 public interface FavoritesStorage {
 	/**
-	 * Loads all favorites from the IO source, and returns it as a {@link List}.
+	 * Loads all favorites from the IO source, and returns it as a {@code List}.
 	 * @return the list of the user's favorites
 	 */
 	public List<Integer> loadAllFavorites();
